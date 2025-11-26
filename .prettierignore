@@ -1,0 +1,12 @@
+# Directories to ignore
+build/
+coverage/
+node_modules/
+.dist/
+.vscode/
+
+# Environment files to ignore (often not an issue but good practice)
+*.env
+.env
+.env.*
+*

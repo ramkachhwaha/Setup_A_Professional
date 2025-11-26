@@ -1,0 +1,34 @@
+{
+  "name": "setup-a-professional",
+  "version": "1.0.0",
+  "description": "A professional Node.js backend setup with Express, MongoDB, Nodemon, and Prettier.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config src/index.js",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "ramkachhwaha"
+  },
+  "keywords": [
+    "professional",
+    "backend"
+  ],
+  "author": "ramkachhwaha",
+  "license": "",
+  "devDependencies": {
+    "nodemon": "^3.1.11",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.0.0"
+  }
+}
