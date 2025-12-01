@@ -1,4 +1,4 @@
-import mangoose, { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const videoSchema = new Schema({
     videoFile: {
@@ -13,7 +13,7 @@ const videoSchema = new Schema({
         type: String,
         required: true
     },
-    description: { 
+    description: {
         type: String,
         required: true
     },
@@ -25,5 +25,6 @@ const videoSchema = new Schema({
 },
     { timestamps: true }
 );
+videoSchema.plugin(mongooseAggregatePaginate);
 
 export const Video = mongoose.model('Video', videoSchema); 
