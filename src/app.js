@@ -13,6 +13,14 @@ app.use(cors({
 app.use(express.json({ limit: "20kb" }));
 app.use(express.urlencoded({ extended: true, limit: "20kb" }));
 app.use(express.static("public"));
-app.use(cookieParser());    
+app.use(cookieParser());
 
+// Routes import 
+import userRouter from './routes/user.router.js';
+
+
+// Routes declaration
+app.use("/api/vi/users", userRouter);
+
+// http://localhost:5000/api/v1/users/login
 export { app };
