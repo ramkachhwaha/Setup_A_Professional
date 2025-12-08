@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import jst from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 // import mongoose from "mongoose";
 
 const userSchema = new Schema({
@@ -50,6 +50,7 @@ const userSchema = new Schema({
 }, { timestamps: true }
 )
 
+// pre-save hook to hash password before saving
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) { return next(); } // checking if password is modified
 
@@ -58,10 +59,12 @@ userSchema.pre("save", async function (next) {
     next(); // calling next function
 });
 
+// method to compare password
 userSchema.methods.isPasswordCorrect = async function (Password) {
     return await bcrypt.compare(Password, this.password);
 };
 
+// method to generate JWT tokens
 userSchema.methods.generateAccessToken = function () {
     return jwt.sign(
         {
@@ -74,6 +77,8 @@ userSchema.methods.generateAccessToken = function () {
         { expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN }
     )
 }
+
+// method to generate refresh token
 userSchema.methods.generateRefreshToken = function () {
     return jwt.sign(
         {

@@ -20,7 +20,8 @@ import userRouter from './routes/user.router.js';
 
 
 // Routes declaration
-app.use("/api/vi/users", userRouter);
+app.use("/users", userRouter);
 
 // http://localhost:5000/api/v1/users/login
+// http://localhost:7000/users/register
 export { app };
