@@ -1,8 +1,8 @@
-import mongoose, { Schema } from "mongoose";
-import jst from "jsonwebtoken";
-import bcrypt from "bcrypt";
-// import mongoose from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
+import jwt from "jsonwebtoken" // for generating JWT tokens
+import bcrypt from "bcrypt"; // for hashing passwords
 
+// schema definition
 const userSchema = new Schema({
     username: {
         type: String,
@@ -45,8 +45,6 @@ const userSchema = new Schema({
     refreshToken: {
         type: String,
     }
-
-
 }, { timestamps: true }
 )
 
@@ -56,7 +54,7 @@ userSchema.pre("save", async function (next) {
 
     const salt = await bcrypt.genSalt(10); // generating salt
     this.password = await bcrypt.hash(this.password, salt); /// hashing password === 34:27
-    next(); // calling next function
+    next(); // calling next function 
 });
 
 // method to compare password

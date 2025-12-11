@@ -25,17 +25,27 @@ const generateAccessAndRefereshTokens = async (userId) => {
     }
 }
 
-// controller functions 
+// register user controller
 const registerUser = asyncHandler(async (req, res) => {
-   
+    // get user details from frontend
+    // validation - not empty
+    // check if user already exists: username, email
+    // check for images, check for avatar
+    // upload them to cloudinary, avatar
+    // create user object - create entry in db
+    // remove password and refresh token field from response
+    // check for user creation
+    // return res
 
-    const { fullName, email, username, password } = req.body
+
+
+    const { fullName, email, username, password } = req.body // find user details from req body
     //console.log("email: ", email);
 
     if (
-        [fullName, email, username, password].some((field) => field?.trim() === "")
+        [fullName, email, username, password].some((field) => field?.trim() === "") // check for empty fields
     ) {
-        throw new ApiError(400, "All fields are required")
+        throw new ApiError(400, " All fields are required ")
     }
 
     const existedUser = await User.findOne({
@@ -479,18 +489,31 @@ const getWatchHistory = asyncHandler(async (req, res) => {
         )
 })
 
+// ++++++++++++++++++++++++++++++++===+++++++++++++++++++++++++++
+
+const registerUser2 = asyncHandler(async (req, res) => {
+    res.status(200).json({
+        message: "register user 2 controller"
+    })
+})
 
 // export controller functions
 export {
+    // registerUser2 // testing purpose
+    // ==========++++++++++++++++
+
     registerUser,
-    loginUser,
-    logoutUser,
-    refreshAccessToken,
-    changeCurrentPassword,
-    getCurrentUser,
-    updateAccountDetails,
-    updateUserAvatar,
-    updateUserCoverImage,
-    getUserChannelProfile,
-    getWatchHistory
+    // loginUser,
+    // logoutUser,
+    // refreshAccessToken,
+    // changeCurrentPassword,
+    // getCurrentUser,
+    // updateAccountDetails,
+    // updateUserAvatar,
+    // updateUserCoverImage,
+    // getUserChannelProfile,
+    // getWatchHistory
 }
+
+
+
